@@ -1,0 +1,21 @@
+[Unit]
+Description=Pomodoro API Service
+After=network.target
+
+[Service]
+User=ec2-user
+WorkingDirectory=/home/ec2-user/pomodoro-api
+ExecStart=/home/ec2-user/pomodoro-api/pomodoro-api
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+Environment=DB_HOST=your-rds-endpoint.rds.amazonaws.com
+Environment=DB_USER=your-db-username
+Environment=DB_PASSWORD=your-db-password
+Environment=DB_NAME=your-db-name
+Environment=DB_PORT=5432
+Environment=APP_PORT=3000
+
+[Install]
+WantedBy=multi-user.target
